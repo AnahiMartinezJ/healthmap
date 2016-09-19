@@ -1,0 +1,221 @@
+﻿/* Hoja de Estilos para el menu de navegacion */
+
+/*Formato de la barra menu, nivel 1*/
+ul#nivelm-1
+	{ 
+	margin:auto; 
+	list-style:none; 
+	height:22px; 						/*Altura del renglon para el menu*/ 
+	border-top:1px solid #666; 			/*Borde superior del menu nivel 1*/
+	border-bottom:1px solid #666; 		/*Borde inferior del menu nivel 1*/
+	font:normal 10pt Arial, Helvetica, sans-serif;
+	color:#666666;
+	}
+	
+/*Configuracion menu nivel 1 */
+ul#nivelm-1 li 
+	{ 
+	display:block;
+	float:left; 					/*orientacion de los menus der -> izq*/
+	position:relative; 				/*Posicion relativa a la tabla*/
+	}
+	
+ul#nivelm-1 li a:link, 
+ul#nivelm-1 li a:visited
+	{ 
+	display:block; 
+	text-align:left;				/*Orientacion del texto del boton*/
+	text-decoration:none;			/*Decoracion del texto como link*/
+	background:#FFF; 				/*Color del boton del menu, nivel 1*/
+	color:#666;  					/*Color de la letra, boton menu nivel 1*/
+	width:100px; 					/*ancho botones del menu nivel 1*/ 
+	height:20px; 
+	padding-left:5px;
+	padding-top:2px;
+	}
+
+/*posicionar el mouse sobre el boton*/
+ul#nivelm-1 li:hover a,
+ul#nivelm-1 li a:hover,
+ul#nivelm-1 li a:active
+	{
+	display:block;
+	text-align:left;
+	text-decoration:none;
+	background:#CCC;
+	color:#666;
+	width:100px;					/*Ancho boton nivel 1, seleccionado*/
+	height:21px;
+	padding-left:5px;
+	padding-top:1px;
+	}
+	
+/*configuracion inicial menu nivel 2*/
+ul#nivelm-1 li ul.nivelm-2
+	{ 
+
+	list-style:none; 	/*Estilo de la lista*/
+	display:none; 		/*Muestreo inicial*/
+	background:#FFF; 	/*Color de fondo borde*/
+	width:150px;  		/*Ancho del boton nivel 2*/
+	position:absolute;  /*Tipo de posicion*/
+	top:21px;  			/*Posicion con respecto a la barra de menu*/
+	left:-1px; 			/*Posicion con respecto al boton padre*/
+	padding:1px 1px;	/*Espaciado al rededor del bloque del menu nivel 2*/ 
+	}
+	
+/*Muestra nivel 2 del menu*/
+ul#nivelm-1 li:hover ul.nivelm-2
+	{ 	display:block; 	}
+	
+
+
+ul#nivelm-1 li ul.nivelm-2 li a:link,
+ul#nivelm-1 li ul.nivelm-2 li a:visited
+	{ 
+	clear:left; 
+	background:#FFF;	 	/*Color boton menus desplegados nivel 2*/ 
+	color:#666;
+	width:220px; 			/*Ancho del boton desplegado nivel 2*/
+	height:25px;
+	border:none; 			/*Estilo del borde menu nivel 2 desplegado*/
+	border:1px solid #666; 
+	position:relative; 		/*Posicion botones menu nivel 2*/
+	z-index:1000; 
+	padding-left:5px;
+	padding-top:2px;
+	}
+
+/*Configuracion mouse sobre boton menu nivel 2*/
+ul#nivelm-1 li ul.nivelm-2 li:hover a,
+ul#nivelm-1 li ul.nivelm-2 li a:active,
+ul#nivelm-1 li ul.nivelm-2 li a:hover
+	{ 
+	clear:left; 
+	background:#CCC; 				/*Color del boton */
+	width:220px; 					/*Ancho del boton */
+	height:25px;
+	border:none; 					/*Estilo del borde*/
+	border-bottom:1px solid #111; 	/*Configuracion borde inferior*/
+	border-top:1px solid #111; 		/*Configuracion borde superior*/
+	position:relative; 				/*Posicion botones */
+	z-index:1000; 
+	padding-left:5px;
+	padding-top:1px;
+	}
+
+/*Configuracion botones nivel 3*/
+ul#nivelm-1 li ul.nivelm-2 li ul.nivelm-3
+	{ 
+	display:none; 
+	margin:0px; 
+	padding:0; 
+	list-style:none; 
+	position:absolute; 
+	left:186px;					/*Separacion horizontal, respecto al boton padre*/ 
+	top:0px; 					/*Posicion vertical, respecto al boton padre*/
+	z-index:900; 
+	width : 180px;				/*Ancho boton, nivel 3*/
+	height:21px;
+	}
+	
+/*Muestra el bloque, menu nivel 3*/
+ul#nivelm-1 li ul.nivelm-2 li:hover ul.nivelm-3
+	{ display:block; }
+	
+
+ul#nivelm-1 li ul.nivelm-2 li ul.nivelm-3 li a:link,
+ul#nivelm-1 li ul.nivelm-2 li ul.nivelm-3 li a:visited
+	{
+		background:#FFF; /*Color del boton, menu nivel 3*/
+		border:1px solid #666; 
+		color:#666;
+	}
+	
+	
+ul#nivelm-1 li ul.nivelm-2 li ul.nivelm-3 li:hover a,
+ul#nivelm-1 li ul.nivelm-2 li ul.nivelm-3 li a:hover,
+ul#nivelm-1 li ul.nivelm-2 li ul.nivelm-3 li a:active
+	{ 
+	background:#CCC; /*Color del boton seleccionado, menu nivel 3*/
+	width:182px; 					/*Ancho del boton */
+	height:21px;
+	border:none; 					/*Estilo del borde*/
+	border-bottom:1px solid #666; 	/*Configuracion borde inferior*/
+	border-top:1px solid #666; 		/*Configuracion borde superior*/
+	border-left:1px solid #666; 	/*Configuracion borde inferior*/
+	
+	}
+	
+/*Configuracion, indicador de nivel 3, inicial*/
+ul#nivelm-1 li ul.nivelm-2 li a span
+	{ 
+	position:absolute; 
+	top:0; 
+	left:154px; 
+	font-size:14pt; 
+	color:#555; 
+	}
+	
+/*Configuracion, indicador de nivel 3, seleccionado y clickeado*/
+ul#nivelm-1 li ul.nivelm-2 li:hover a span,
+ul#nivelm-1 li ul.nivelm-2 li a:hover span
+	{ 
+	position:absolute; 
+	top:0; 
+	left:155px; 
+	font-size:14pt; 
+	color:#444; 
+	}
+
+/*nivel dos version 2, para texto pequeï¿½o*/
+
+ul#nivelm-1 li ul.nivelm-version2
+	{ 
+	list-style:none; 	/*Estilo de la lista*/
+	display:none; 		/*Muestreo inicial*/
+	background:#FFF; 	/*Color de fondo borde*/
+	width:150px;  		/*Ancho del boton nivel 2*/
+	position:absolute;  /*Tipo de posicion*/
+	top:21px;  			/*Posicion con respecto a la barra de menu*/
+	left:-1px; 			/*Posicion con respecto al boton padre*/
+	padding:1px 1px;	/*Espaciado al rededor del bloque del menu nivel 2*/ 
+	}
+	
+/*Muestra nivel 2 del menu*/
+ul#nivelm-1 li:hover ul.nivelm-version2
+	{ 	display:block; 	}
+
+ul#nivelm-1 li ul.nivelm-version2 li a:link,
+ul#nivelm-1 li ul.nivelm-version2 li a:visited
+	{ 
+	clear:left; 
+	background:#FFF;	 	/*Color boton menus desplegados nivel 2*/ 
+	color:#666;
+	width:160px; 			/*Ancho del boton desplegado nivel 2*/
+	height:25px;
+	border:none; 			/*Estilo del borde menu nivel 2 desplegado*/
+	border:1px solid #666; 
+	position:relative; 		/*Posicion botones menu nivel 2*/
+	z-index:1000; 
+	padding-left:5px;
+	padding-top:2px;
+	}
+
+/*Configuracion mouse sobre boton menu nivel 2*/
+ul#nivelm-1 li ul.nivelm-version2 li:hover a,
+ul#nivelm-1 li ul.nivelm-version2 li a:active,
+ul#nivelm-1 li ul.nivelm-version2 li a:hover
+	{ 
+	clear:left; 
+	background:#CCC; 				/*Color del boton */
+	width:160px; 					/*Ancho del boton */
+	height:25px;
+	border:none; 					/*Estilo del borde*/
+	border-bottom:1px solid #111; 	/*Configuracion borde inferior*/
+	border-top:1px solid #111; 		/*Configuracion borde superior*/
+	position:relative; 				/*Posicion botones */
+	z-index:1000; 
+	padding-left:5px;
+	padding-top:1px;
+	}
