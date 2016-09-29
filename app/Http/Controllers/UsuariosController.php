@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+//use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use App\User;
+use App\users_action;
+use Illuminate\Support\Facades\Auth;
 
 class UsuariosController extends Controller
 {
@@ -24,16 +27,52 @@ class UsuariosController extends Controller
      */
     public function usuarios()
     {
+    	  
+    	  
         $usuarios = User::all();
+        
+        //Registro de actividad
+        $accionxusr = new users_action;
+        $accionxusr->idAction =3;
+        $accionxusr->idUser =Auth::user()->id;
+        $accionxusr->save();
+        //
+        $usuarios = User::where('jerarquia', '!=' , 'Root')->get();
+        
         return view('usuarios.usuarios', array('usuarios' => $usuarios));
     }
     
     public function regresa_usuario(Request $request, $id_usuario){
         $usuario = User::find($id_usuario);
         if($usuario !== null){
-            return response()->json(array('status' => 'ok', 'usuario' => $usuario));
+            if(Auth::User()->jerarquia == 'Root' || Auth::User()->jerarquia == 'Root')
+                $tipo_usuario = 1;
+            else
+                $tipo_usuario = 0;
+            return response()->json(array('status' => 'ok', 'usuario' => $usuario, 'tipo_usuario' => $tipo_usuario));
         }
         
         return response()->json(array('status' => 'error'));
     }
+    
+     public function cambiar_jerarquia(Request $request, $id_usuario){
+        $input = $request->all();
+        $usuario = User::find($id_usuario);
+        if($usuario !== null){
+            $usuario->jerarquia = $input['jerarquia'];
+            $usuario->save();
+				
+				//Registro de actividad
+				$accionxusr = new users_action;
+      		$accionxusr->idAction =7;
+   		   $accionxusr->idUser =Auth::user()->id;
+   		   $accionxusr->save();   
+				//            
+            
+            return response()->json(array('status' => 'ok', 'mensaje' => 'Â¡Se cambiÃ³ la jerarquÃ­a correctamente!'));
+        }
+        
+        return response()->json(array('status' => 'error', 'mensaje' => 'Â¡Error al intentar cambiar la jerarquÃ­a de usuario!'));
+    }
+    
 }

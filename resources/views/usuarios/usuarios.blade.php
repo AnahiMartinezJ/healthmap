@@ -23,30 +23,28 @@
                             <th>Apellido Materno</th>
                             <th>Título</th>
                             <th>Ultima cédula DGP</th>
-                            <th>Título</th>
-                            <th>Ultima cédula DGP</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($usuarios as $usuario)
-                            <tr>
-                                <td>{{ $usuario->name }}</td>
-                                <td>{{ $usuario->apellido_paterno }}</td>
-                                <td>{{ $usuario->apellido_materno }}</td>
-                                <td>{{ $usuario->titulo }}</td>
-                                <td>{{ $usuario->cedula }}</td>
-                                 <td>{{ $usuario->titulo }}</td>
-                                <td>{{ $usuario->cedula }}</td>
-                                <td>
-                                    <span style="display: none;">{{ $usuario->id }}</span> 
-                                    @if ($usuario->autorizado == 1)
-                                        <a id="h-estado-usuario{{$usuario->id}}" class="h-estado-usuario" style="cursor: pointer;" title="Ver Perfil"><i class="glyphicon glyphicon-check"></i>&nbsp;Perfil Autorizado</a>
-                                    @else
-                                        <a id="h-estado-usuario{{$usuario->id}}" class="h-estado-usuario" style="cursor: pointer; color: red;" title="Estado del usuario"><i class="glyphicon glyphicon-unchecked"></i>&nbsp;Perfil Pendiente</a> 
-                                    @endif 
-                                </td>
-                            </tr>
+                            @if($usuario->id != Auth::User()->id)
+                                <tr>
+                                    <td>{{ $usuario->name }}</td>
+                                    <td>{{ $usuario->apellido_paterno }}</td>
+                                    <td>{{ $usuario->apellido_materno }}</td>
+                                    <td>{{ $usuario->titulo }}</td>
+                                    <td>{{ $usuario->cedula }}</td>
+                                    <td>
+                                        <span style="display: none;">{{ $usuario->id }}</span> 
+                                        @if ($usuario->autorizado == 1)
+                                            <a id="h-estado-usuario{{$usuario->id}}" class="h-estado-usuario" style="cursor: pointer;" title="Ver Perfil"><i class="glyphicon glyphicon-check"></i>&nbsp;Perfil Autorizado</a>
+                                        @else
+                                            <a id="h-estado-usuario{{$usuario->id}}" class="h-estado-usuario" style="cursor: pointer; color: red;" title="Perfil pendiente"><i class="glyphicon glyphicon-unchecked"></i>&nbsp;Perfil Pendiente</a> 
+                                        @endif 
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -148,15 +146,25 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="jerarquia" class="control-label">Jerarquía deseada en la plataforma</label>
-                        <select id="jerarquia" class="form-control" name="jerarquia">
-                            <option value="Usuario moderado">Usuario moderado</option>
-                            <option value="Usuario No-moderado">Usuario No-moderado</option>
-                            <option value="Administrador">Administrador</option>
-                        </select>
+                        @if(Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root')
+                            <select id="jerarquia" class="form-control" name="jerarquia">
+                                <option value="Usuario moderado">Usuario moderado</option>
+                                <option value="Usuario No-moderado">Usuario No-moderado</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                        @else
+                            <select id="jerarquia" class="form-control" name="jerarquia" disabled>
+                                <option value="Usuario moderado">Usuario moderado</option>
+                                <option value="Usuario No-moderado">Usuario No-moderado</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                        @endif
                     </div>
                     <div class="col-md-6">
-                        <label for="boton-autorizar" class="control-label">&nbsp;</label>
-                        <a href="/" class="btn btn-primary form-control" name="boton-autorizar">Cambiar jerarquía</a>
+                        <label for="boton-cambiar-jerarquia" class="control-label">&nbsp;</label>
+                        @if(Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root')
+                            <a id="boton-cambiar-jerarquia" href="#" class="btn btn-danger form-control" name="boton-cambiar-jerarquia">Cambiar jerarquía</a>
+                        @endif
                     </div>
                 </div>
             </form>

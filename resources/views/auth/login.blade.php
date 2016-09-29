@@ -14,9 +14,7 @@
 </div>
 <div class="row" style="margin-left:40px; margin-right: 40px;">
     <div class="col-md-12">
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-            {{ csrf_field() }}
-            
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">{{ csrf_field() }}
             <div class="row">
                 <div class="col-md-4">
                 </div>
@@ -47,13 +45,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary form-control">
-                            Iniciar sesión
-                        </button>
-                        <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                            ¿Has olvidado tu contraseña?
-                        </a>
+                        <button type="submit" class="btn btn-primary form-control">Iniciar sesión</button>
+                        <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado tu contraseña?</a>
+                        <a class="btn btn-link" href="{{ url('/register') }}">¡Regístrate!</a>
                     </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 210px;">
+                    <a href="/" class="">
+                       Cancelar y regresar al mapa
+                    </a>
                 </div>
             </div>
         </form>

@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/usuarios', 'UsuariosController@usuarios');
 Route::post('/usuarios/{id}', 'UsuariosController@regresa_usuario');
+Route::post('/usuarios/{id}/cambiar_jerarquia', 'UsuariosController@cambiar_jerarquia');
+Route::get('/registrodeactividad', 'RegistroActividadController@registrodeactividad');

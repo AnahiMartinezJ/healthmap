@@ -5,8 +5,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>LGVH - Home</title>
         <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/responsive.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/sweetalert.css">
         <link rel="stylesheet" type="text/css" href="./css/elementos.css">
         <link rel="stylesheet" type="text/css" href="./css/estilo_menu.css">
     </head>
@@ -135,10 +136,11 @@
     </body>
     <script src="./js/jquery-3.1.0.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.1.0/js/responsive.bootstrap.min.js"></script>
+    <script src="./js/jquery.dataTables.min.js"></script>
+    <script src="./js/dataTables.bootstrap.min.js"></script>
+    <script src="./js/dataTables.responsive.min.js"></script>
+    <script src="./js/responsive.bootstrap.min.js"></script>
+    <script src="./js/sweetalert.min.js"></script>
     @yield('scripts')
     <script>
         $.ajaxSetup({

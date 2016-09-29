@@ -18,9 +18,9 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="{{ url('/perfil') }}">
+                            <!--<a href="{{ url('/perfil') }}">
                                 Mi perfil
-                            </a>
+                            </a>-->
                             <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Cerrar sesión
                             </a>
@@ -37,8 +37,11 @@
                 </button>
                 <ul class="dropdown-menu" role="menu" style="background-color: rgba(255, 255, 255, 1);">
                     <li><a href="usuarios">Listado de usuarios</a></li>
-                    <li><a href="nuevo_caso">Reportar nuevo caso</a></li>
-                    <li><a href="origen">Posible origen del virus</a></li>
+                    <!--<li><a href="#">Reportar nuevo caso</a></li>
+                    <li><a href="#">Posible origen del virus</a></li>-->
+                    @if(Auth::check() && (Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root'))
+                        <li><a href="registrodeactividad">Registro de actividad</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
