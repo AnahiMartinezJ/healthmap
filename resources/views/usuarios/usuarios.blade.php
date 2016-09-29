@@ -40,7 +40,7 @@
                                         @if ($usuario->autorizado == 1)
                                             <a id="h-estado-usuario{{$usuario->id}}" class="h-estado-usuario" style="cursor: pointer;" title="Ver Perfil"><i class="glyphicon glyphicon-check"></i>&nbsp;Perfil Autorizado</a>
                                         @else
-                                            <a id="h-estado-usuario{{$usuario->id}}" class="h-estado-usuario" style="cursor: pointer; color: red;" title="Perfil pendiente"><i class="glyphicon glyphicon-unchecked"></i>&nbsp;Perfil Pendiente</a> 
+                                            <a id="h-estado-usuario{{$usuario->id}}" class="h-estado-usuario" style="cursor: pointer; color: red;" title="Perfil Pendiente"><i class="glyphicon glyphicon-unchecked"></i>&nbsp;Perfil Pendiente</a> 
                                         @endif 
                                     </td>
                                 </tr>
@@ -146,7 +146,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="jerarquia" class="control-label">Jerarquía deseada en la plataforma</label>
-                        @if(Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root')
+                        @if((Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root') && Auth::User()->autorizado == 1)
                             <select id="jerarquia" class="form-control" name="jerarquia">
                                 <option value="Usuario moderado">Usuario moderado</option>
                                 <option value="Usuario No-moderado">Usuario No-moderado</option>
@@ -162,7 +162,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="boton-cambiar-jerarquia" class="control-label">&nbsp;</label>
-                        @if(Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root')
+                        @if((Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root') && Auth::User()->autorizado == 1)
                             <a id="boton-cambiar-jerarquia" href="#" class="btn btn-danger form-control" name="boton-cambiar-jerarquia">Cambiar jerarquía</a>
                         @endif
                     </div>

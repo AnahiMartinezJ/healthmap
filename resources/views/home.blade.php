@@ -39,7 +39,7 @@
                     <li><a href="usuarios">Listado de usuarios</a></li>
                     <!--<li><a href="#">Reportar nuevo caso</a></li>
                     <li><a href="#">Posible origen del virus</a></li>-->
-                    @if(Auth::check() && (Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root'))
+                    @if(Auth::check() && (Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root') && Auth::User()->autorizado == 1)
                         <li><a href="registrodeactividad">Registro de actividad</a></li>
                     @endif
                 </ul>

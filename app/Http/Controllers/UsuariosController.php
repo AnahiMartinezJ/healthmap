@@ -45,7 +45,7 @@ class UsuariosController extends Controller
     public function regresa_usuario(Request $request, $id_usuario){
         $usuario = User::find($id_usuario);
         if($usuario !== null){
-            if(Auth::User()->jerarquia == 'Root' || Auth::User()->jerarquia == 'Root')
+            if((Auth::User()->jerarquia == 'Administrador' || Auth::User()->jerarquia == 'Root') && Auth::User()->autorizado)
                 $tipo_usuario = 1;
             else
                 $tipo_usuario = 0;
@@ -73,6 +73,23 @@ class UsuariosController extends Controller
         }
         
         return response()->json(array('status' => 'error', 'mensaje' => 'Â¡Error al intentar cambiar la jerarquÃ­a de usuario!'));
+    }
+    
+    public function cambiar_autorizacion(Request $request, $id_usuario){
+        $usuario = User::find($id_usuario);
+        if($usuario !== null){
+            if($usuario->autorizado == 0){
+                $usuario->autorizado = 1;
+            }
+            else{
+                if($usuario->autorizado == 1){
+                    $usuario->autorizado = 0;
+                }
+            }
+            $usuario->save();
+            return response()->json(array('status' => 'ok', 'mensaje' => 'Se cambió el estado de autorización correctamente', 'autorizado' => $usuario->autorizado, 'id' => $usuario->id));
+        }
+        return response()->json(array('status' => 'ok', 'mensaje' => '¡Error al intentar cambiar el estado de autorización', 'autorizado' => $usuario->autorizado, 'id' => $usuario->id));
     }
     
 }

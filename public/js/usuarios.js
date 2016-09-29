@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     $('#h-tabla-usuarios').DataTable({
         "language": {
             "info": "Mostrando página _PAGE_ de un total de _PAGES_ páginas",
@@ -11,7 +12,7 @@ $(document).ready(function() {
             }
           }
     });
-    
+        
     function prepara_modal(id){
         $('#h-modal').find('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>').end();
         $('#h-modal').find('.modal-body').html($('#h-modal-ver-perfil').html());
@@ -119,16 +120,22 @@ $(document).ready(function() {
             closeOnConfirm: false
         },
         function(){
-            var data = {
-                jerarquia:  $('#h-modal').find('#jerarquia').val()
-            };
             $.ajax({
                 url:   'usuarios/' + $('#h-modal').find('#h-boton-autorizar').val() + '/cambiar_autorizacion',
                 type:  'post',
                 dataType: 'json',
-                data:   data,
                 success:  function(data, textStatus, jqXHR) {
                     if(data.status == 'ok'){
+                        if(data.autorizado == 1){
+                            $('#h-modal').find('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button><button type="button" class="btn btn-danger" id="h-boton-autorizar"' + ' value= "' + data.id + '">Revocar autorización</button>').end();
+                            $('#h-modal').find('.modal-title').html('Perfil de usuario ¡AUTORIZADO!');
+                            $('#h-estado-usuario' + data.id).attr('title', 'Ver Perfil').html('<i class="glyphicon glyphicon-check"></i>&nbsp;Perfil Autorizado').attr('style', 'cursor: pointer; color: lighblue;');
+                        }
+                        else{
+                            $('#h-modal').find('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button><button type="button" class="btn btn-primary" id="h-boton-autorizar"' + ' value= "' + data.id + '">Autorizar usuario</button>').end();
+                            $('#h-modal').find('.modal-title').html('Perfil de usuario ¡NO AUTORIZADO!');
+                            $('#h-estado-usuario' + data.id).attr('title', 'Perfil Pendiente').html('<i class="glyphicon glyphicon-unchecked"></i>&nbsp;Perfil Pendiente').attr('style', 'cursor: pointer; color: red;');
+                        }
                         swal("¡Listo!", data.mensaje, "success");
                     }
                     else{
