@@ -22,7 +22,7 @@ class RegistroActividadController extends Controller
     
     protected function registrodeactividad()//Request $request)
     {
-    	       
+    	//se guarda el registro de actividad
 		$accionxusr = new users_action;
       $accionxusr->idAction =5;
       $accionxusr->idUser =Auth::user()->id;
